@@ -5,7 +5,6 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.sun.weather.data.model.Weather
 import com.sun.weather.data.repository.source.local.converter.WeatherBasicConverter
 import com.sun.weather.data.repository.source.local.converter.WeatherBasicListConverter
 import com.sun.weather.data.repository.source.local.dao.WeatherDao

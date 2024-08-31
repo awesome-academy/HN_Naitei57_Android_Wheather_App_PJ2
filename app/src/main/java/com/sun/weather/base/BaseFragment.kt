@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.viewbinding.ViewBinding
+import com.sun.weather.ui.SharedViewModel
 
 typealias FragmentInflate<T> = (LayoutInflater, ViewGroup?, Boolean) -> T
 
@@ -15,6 +16,7 @@ abstract class BaseFragment<VB : ViewBinding>(private val inflate: FragmentInfla
     private var _binding: VB? = null
     val binding get() = _binding!!
     abstract val viewModel: ViewModel
+    abstract val sharedViewModel: SharedViewModel
 
     protected abstract fun initView()
 
