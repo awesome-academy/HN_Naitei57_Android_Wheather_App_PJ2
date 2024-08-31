@@ -19,7 +19,7 @@
         android:configChanges="locale|orientation|screenSize"
         tools:targetApi="31">
         <activity
-            android:name="com.sun.weather.MainActivity"
+            android:name="com.sun.weather.ui.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
