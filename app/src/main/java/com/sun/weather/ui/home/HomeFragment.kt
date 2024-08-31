@@ -9,6 +9,8 @@ import com.sun.weather.base.BaseFragment
 import com.sun.weather.data.model.entity.WeatherEntity
 import com.sun.weather.databinding.FragmentHomeBinding
 import com.sun.weather.ui.SharedViewModel
+import com.sun.weather.ui.search.SearchFragment
+import com.sun.weather.utils.ext.replaceFragment
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.text.SimpleDateFormat
@@ -25,15 +27,28 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            latitude = it.getDouble(ARG_LATITUDE)
-            longitude = it.getDouble(ARG_LONGITUDE)
+        sharedViewModel.latitude.observe(this) { lat ->
+            lat?.let { latitude = it }
         }
+        sharedViewModel.longitude.observe(this) { lon ->
+            lon?.let { longitude = it }
+        }
+        fetchWeatherData()
     }
 
     override fun initView() {
         binding.icLocation.setOnClickListener {
             fetchWeatherData()
+        }
+        binding.tvLocation.setOnClickListener {
+            replaceFragment(R.id.fragment_container, SearchFragment.newInstance(), true)
+        }
+        binding.icArrowDown.setOnClickListener {
+            sharedViewModel.selectedLocation.observe(viewLifecycleOwner) { location ->
+                location?.let {
+                    fetchWeatherForLocation(it, "vi")
+                }
+            }
         }
     }
 
@@ -55,11 +70,18 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     }
 
     override fun bindData() {
-        // TODO LATER
+        // Todo implement later
     }
 
     private fun fetchWeatherData() {
-        viewModel.fetchCurrentWeather(latitude, longitude)
+        viewModel.fetchCurrentWeather(latitude, longitude, "vi")
+    }
+
+    private fun fetchWeatherForLocation(
+        location: String,
+        language: String,
+    ) {
+        viewModel.fetchWeatherForSearchResult(location, "vi")
     }
 
     private fun updateUIWithCurrentWeather(currentWeather: WeatherEntity) {
@@ -80,20 +102,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     }
 
     companion object {
-        const val SELECTED_LOCATION = "selected_location"
-        const val ARG_LATITUDE = "latitude"
-        const val ARG_LONGITUDE = "longitude"
-
-        fun newInstance(
-            latitude: Double,
-            longitude: Double,
-        ): HomeFragment {
-            val fragment = HomeFragment()
-            val args = Bundle()
-            args.putDouble(ARG_LATITUDE, latitude)
-            args.putDouble(ARG_LONGITUDE, longitude)
-            fragment.arguments = args
-            return fragment
+        fun newInstance(): HomeFragment {
+            return HomeFragment()
         }
 
         private fun formatDate(timestamp: Long): String {

@@ -1,6 +1,5 @@
 package com.sun.weather.data.repository.source.local
 
-import com.sun.weather.data.model.Weather
 import com.sun.weather.data.repository.source.WeatherDataSource
 import com.sun.weather.data.repository.source.local.dao.WeatherDao
 

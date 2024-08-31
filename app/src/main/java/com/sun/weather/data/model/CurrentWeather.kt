@@ -1,6 +1,5 @@
 package com.sun.weather.data.model
 
-import com.example.weather.utils.ext.combineWithCountry
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import com.sun.weather.data.model.entity.WeatherEntity
