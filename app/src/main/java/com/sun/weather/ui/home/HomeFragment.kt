@@ -49,7 +49,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         }
         binding.constraintLayout.setOnClickListener {
             cityName?.let {
-                replaceFragment(R.id.fragment_container, DetailFragment.newInstance(cityName!!), true)
+                replaceFragment(R.id.fragment_container, DetailFragment.newInstance(cityName), true)
             }
         }
         binding.btnAddFavourite.setOnClickListener {
