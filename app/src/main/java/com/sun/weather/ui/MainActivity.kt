@@ -1,4 +1,3 @@
-
 package com.sun.weather.ui
 
 import android.os.Bundle

@@ -4,7 +4,6 @@ import androidx.annotation.NonNull
 import kotlinx.coroutines.CoroutineDispatcher
 
 interface BaseDispatcherProvider {
-
     @NonNull
     fun computation(): CoroutineDispatcher
 
