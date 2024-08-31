@@ -16,7 +16,10 @@ class NetworkStateReceiver : BroadcastReceiver() {
         listeners = ArrayList()
     }
 
-    override fun onReceive(context: Context, intent: Intent?) {
+    override fun onReceive(
+        context: Context,
+        intent: Intent?,
+    ) {
         Log.i(tag, "Intent broadcast received")
         if (intent == null || intent.extras == null) return
 
@@ -27,7 +30,7 @@ class NetworkStateReceiver : BroadcastReceiver() {
             connected = true
         } else if (intent.getBooleanExtra(
                 ConnectivityManager.EXTRA_NO_CONNECTIVITY,
-                java.lang.Boolean.FALSE
+                java.lang.Boolean.FALSE,
             )
         ) {
             connected = false
@@ -38,7 +41,7 @@ class NetworkStateReceiver : BroadcastReceiver() {
     private fun notifyStateToAll() {
         Log.i(tag, "Notifying state to " + listeners.size + " listener(s)")
         for (eachNetworkStateReceiverListener in listeners) notifyState(
-            eachNetworkStateReceiverListener
+            eachNetworkStateReceiverListener,
         )
     }
 
@@ -54,7 +57,7 @@ class NetworkStateReceiver : BroadcastReceiver() {
     fun addListener(networkStateReceiverListener: NetworkStateReceiverListener) {
         Log.i(
             tag,
-            "addListener() - listeners.add(networkStateReceiverListener) + notifyState(networkStateReceiverListener);"
+            "addListener() - listeners.add(networkStateReceiverListener) + notifyState(networkStateReceiverListener);",
         )
         listeners.add(networkStateReceiverListener)
         notifyState(networkStateReceiverListener)
@@ -65,7 +68,6 @@ class NetworkStateReceiver : BroadcastReceiver() {
     }
 
     interface NetworkStateReceiverListener {
-
         fun networkAvailable()
 
         fun networkUnavailable()

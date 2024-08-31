@@ -1,11 +1,11 @@
 package com.sun.weather.data.repository.source.remote.api.error
 
-import com.sun.weather.utils.LogUtils
 import com.example.weather.utils.ext.notNull
 import com.google.gson.Gson
 import com.google.gson.JsonSyntaxException
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import com.sun.weather.utils.LogUtils
 import retrofit2.HttpException
 import java.io.IOException
 import java.text.ParseException
@@ -16,7 +16,7 @@ data class ErrorResponse(
     val status: Int,
     @SerializedName("messages")
     @Expose
-    val messages: String?
+    val messages: String?,
 ) {
     companion object {
         private const val TAG = "ErrorResponse"
@@ -26,17 +26,16 @@ data class ErrorResponse(
             if (throwable is RetrofitException) {
                 return throwable
             }
-
-            // A network error happened
             if (throwable is IOException) {
                 return RetrofitException.toNetworkError(throwable)
             }
-
-            // We had non-200 http error
-            if (throwable is HttpException) {
-                val response = throwable.response() ?: return RetrofitException.toUnexpectedError(
-                    throwable
-                )
+            if (
+                throwable is HttpException
+            ) {
+                val response =
+                    throwable.response() ?: return RetrofitException.toUnexpectedError(
+                        throwable,
+                    )
 
                 response.errorBody().notNull {
                     return try {

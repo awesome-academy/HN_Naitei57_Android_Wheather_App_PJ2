@@ -5,7 +5,6 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 
 class DispatcherProvider : BaseDispatcherProvider {
-
     @NonNull
     override fun computation(): CoroutineDispatcher = Dispatchers.Default
 

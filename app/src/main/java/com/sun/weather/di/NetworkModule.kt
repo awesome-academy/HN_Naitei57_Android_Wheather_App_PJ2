@@ -11,15 +11,16 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
-val NetworkModule = module {
-    single { provideOkHttpCache(get()) }
+val NetworkModule =
+    module {
+        single { provideOkHttpCache(get()) }
 
-    single { provideOkHttpClient(get()) }
+        single { provideOkHttpClient(get()) }
 
-    single { provideRetrofit(get(), get()) }
+        single { provideRetrofit(get(), get()) }
 
-    single { provideApiService(get()) }
-}
+        single { provideApiService(get()) }
+    }
 
 fun provideOkHttpCache(app: Application): Cache {
     val cacheSize: Long = NetWorkInstant.CACHE_SIZE
@@ -32,21 +33,24 @@ fun provideOkHttpClient(cache: Cache): OkHttpClient {
 
     httpClientBuilder.readTimeout(
         NetWorkInstant.READ_TIMEOUT,
-        TimeUnit.SECONDS
+        TimeUnit.SECONDS,
     )
     httpClientBuilder.writeTimeout(
         NetWorkInstant.WRITE_TIMEOUT,
-        TimeUnit.SECONDS
+        TimeUnit.SECONDS,
     )
     httpClientBuilder.connectTimeout(
         NetWorkInstant.CONNECT_TIMEOUT,
-        TimeUnit.SECONDS
+        TimeUnit.SECONDS,
     )
 
     return httpClientBuilder.build()
 }
 
-fun provideRetrofit(gson: Gson, okHttpClient: OkHttpClient): Retrofit {
+fun provideRetrofit(
+    gson: Gson,
+    okHttpClient: OkHttpClient,
+): Retrofit {
     return Retrofit.Builder().baseUrl(Constant.BASE_URL).addConverterFactory(GsonConverterFactory.create(gson))
         .client(okHttpClient).build()
 }

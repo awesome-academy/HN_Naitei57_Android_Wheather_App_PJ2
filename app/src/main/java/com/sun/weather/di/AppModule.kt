@@ -13,18 +13,18 @@ import com.sun.weather.data.repository.source.remote.api.middleware.IntegerAdapt
 import com.sun.weather.utils.DateTimeUtils
 import org.koin.dsl.module
 
-val AppModule = module {
-    single { provideResources(get()) }
+val AppModule =
+    module {
+        single { provideResources(get()) }
 
-    single { provideBaseDispatcherProvider() }
+        single { provideBaseDispatcherProvider() }
 
-    single { provideGson() }
-}
+        single { provideGson() }
+    }
 
 fun provideResources(app: Application): Resources {
     return app.resources
 }
-
 
 fun provideBaseDispatcherProvider(): BaseDispatcherProvider {
     return DispatcherProvider()
