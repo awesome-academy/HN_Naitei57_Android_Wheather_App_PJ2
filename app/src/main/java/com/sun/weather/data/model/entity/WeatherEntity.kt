@@ -38,7 +38,6 @@ data class WeatherEntity(
 }
 
 object WeatherEntry {
-    // Local database entries
     const val TBL_WEATHER_NAME = "weather_forecasts"
     const val CURRENTLY_OBJECT = "currently"
     const val HOURLY_OBJECT = "hourly"

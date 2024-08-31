@@ -61,8 +61,6 @@ data class ErrorResponse(
 
                 return RetrofitException.toHttpError(response)
             }
-
-            // We don't know what happened. We need to simply convert to an unknown error
             return RetrofitException.toUnexpectedError(throwable)
         }
     }

@@ -14,7 +14,7 @@ val RepositoryModule =
     module {
         single {
             provideWeatherRepository(
-                WeatherLocalDataSource(get()),
+                WeatherLocalDataSource(get(), get()),
                 WeatherRemoteDataSource(
                     baseApiService = get(named(BASE_API_SERVICE)),
                     proApiService = get(named(PRO_API_SERVICE)),

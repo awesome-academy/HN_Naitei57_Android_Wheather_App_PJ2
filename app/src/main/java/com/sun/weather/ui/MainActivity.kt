@@ -5,6 +5,7 @@ import androidx.lifecycle.Observer
 import com.sun.weather.R
 import com.sun.weather.base.BaseActivity
 import com.sun.weather.databinding.ActivityMainBinding
+import com.sun.weather.ui.favourite.FavouriteFragment
 import com.sun.weather.ui.home.HomeFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -23,6 +24,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
             },
         )
         viewModel.requestLocationAndFetchWeather(this)
+        setNavigation()
     }
 
     private fun setNextFragment(fragment: Fragment) {
@@ -31,5 +33,15 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
             .addToBackStack(fragment::javaClass.name)
             .replace(R.id.fragment_container, fragment)
             .commit()
+    }
+
+    private fun setNavigation() {
+        binding.bottomNavigation.setOnItemSelectedListener {
+            when (it.itemId) {
+                R.id.mi_home -> setNextFragment(HomeFragment.newInstance())
+                R.id.mi_favorite -> setNextFragment(FavouriteFragment.newInstance())
+            }
+            true
+        }
     }
 }
