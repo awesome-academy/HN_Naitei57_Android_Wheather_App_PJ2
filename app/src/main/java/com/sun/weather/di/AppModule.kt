@@ -1,6 +1,7 @@
 package com.sun.weather.di
 
 import android.app.Application
+import android.content.Context
 import android.content.res.Resources
 import com.example.weather.utils.dispatchers.BaseDispatcherProvider
 import com.example.weather.utils.dispatchers.DispatcherProvider
