@@ -7,9 +7,11 @@ import com.google.gson.stream.JsonWriter
 import java.io.IOException
 
 class DoubleAdapter : TypeAdapter<Double>() {
-
     @Throws(IOException::class)
-    override fun write(out: JsonWriter, value: Double?) {
+    override fun write(
+        out: JsonWriter,
+        value: Double?,
+    ) {
         value?.let {
             out.nullValue()
             return

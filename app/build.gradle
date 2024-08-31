@@ -6,6 +6,8 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'io.gitlab.arturbosch.detekt' version '1.22.0-RC2'
+    id 'kotlin-parcelize'
+    id 'kotlin-kapt'
 }
 
 def localProperties = new Properties()
@@ -15,6 +17,8 @@ if (localPropertiesFile.exists()) {
         localProperties.load(stream)
     }
 }
+
+
 
 android {
     namespace 'com.sun.weather'

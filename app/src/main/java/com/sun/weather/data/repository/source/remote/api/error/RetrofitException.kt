@@ -7,7 +7,6 @@ import java.net.SocketTimeoutException
 import java.net.UnknownHostException
 
 class RetrofitException : RuntimeException {
-
     private val errorType: String
     private lateinit var responses: Response<*>
     private var errorResponse: ErrorResponse? = null
@@ -83,7 +82,6 @@ class RetrofitException : RuntimeException {
     }
 
     companion object {
-
         fun toNetworkError(cause: Throwable): RetrofitException {
             return RetrofitException(Type.NETWORK, cause)
         }
