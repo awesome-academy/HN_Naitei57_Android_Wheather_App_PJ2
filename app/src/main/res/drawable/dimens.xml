@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources >
+    <dimen name="text_size_11">11sp</dimen>
+    <dimen name="text_size_12">12sp</dimen>
+    <dimen name="text_size_13">13sp</dimen>
+    <dimen name="text_size_14">14sp</dimen>
+    <dimen name="text_size_15">15sp</dimen>
+    <dimen name="text_size_16">16sp</dimen>
+    <dimen name="text_size_18">18sp</dimen>
+    <dimen name="text_size_20">20sp</dimen>
+    <dimen name="text_size_24">24sp</dimen>
+    <dimen name="text_size_72">72sp</dimen>
+    <dimen name="text_size_100">100sp</dimen>
+
+    <!-- Margin values -->
+    <dimen name="margin_micro">2dp</dimen>
+    <dimen name="margin_xsmall">4dp</dimen>
+    <dimen name="margin_small">8dp</dimen>
+    <dimen name="margin_medium">16dp</dimen>
+    <dimen name="margin_large">24dp</dimen>
+    <dimen name="margin_xlarge">32dp</dimen>
+    <dimen name="margin_medium_large">40dp</dimen>
+    <dimen name="margin_xxlarge">64dp</dimen>
+    <dimen name="margin_xxxlarge">128dp</dimen>
+
+    <!-- Padding values -->
+    <dimen name="padding_micro">2dp</dimen>
+    <dimen name="padding_xsmall">4dp</dimen>
+    <dimen name="padding_small">8dp</dimen>
+    <dimen name="padding_medium">16dp</dimen>
+    <dimen name="padding_large">24dp</dimen>
+    <dimen name="padding_xlarge">48dp</dimen>
+
+    <!-- Icon sizes -->
+    <dimen name="icon_size_xsmall">12dp</dimen>
+    <dimen name="icon_size_small">24dp</dimen>
+    <dimen name="icon_size_xlarge">32dp</dimen>
+    <dimen name="icon_size_large">48dp</dimen>
+    <dimen name="image_weather_size">130dp</dimen>
+    <dimen name="display_size">350dp</dimen>
+    <dimen name="dp_0">0.00dp</dimen>
+    <dimen name="dp_4">4.00dp</dimen>
+    <dimen name="dp_8">8.00dp</dimen>
+    <dimen name="dp_10">10.00dp</dimen>
+    <dimen name="dp_16">16.00dp</dimen>
+    <dimen name="dp_20">20.00dp</dimen>
+    <dimen name="dp_24">24.00dp</dimen>
+    <dimen name="dp_30">30.00dp</dimen>
+    <dimen name="dp_40">40.00dp</dimen>
+    <dimen name="dp_100">100.00dp</dimen>
+    <dimen name="dp_120">120.00dp</dimen>
+    <dimen name="dp_150">150.00dp</dimen>
+    <dimen name="dp_170">170.00dp</dimen>
+    <dimen name="dp_200">200.00dp</dimen>
+    <dimen name="dp_220">220.00dp</dimen>
+    <dimen name="dp_250">250.00dp</dimen>
+    <dimen name="dp_270">270.00dp</dimen>
+    <dimen name="dp_460">460.00dp</dimen>
+</resources>
