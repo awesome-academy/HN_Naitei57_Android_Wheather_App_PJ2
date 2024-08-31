@@ -1,3 +1,52 @@
 <resources>
-    <string name="app_name">Android-template</string>
+
+    <string name="app_name">Weather Forecast</string>
+    <string name="splash_screen">Splash Screen</string>
+    <string name="hello_world">Hello World!</string>
+    <string name="home">Home</string>
+    <string name="setting">Setting</string>
+    <string name="favourite">Favourite</string>
+    <string name="test_location">Ha Noi</string>
+    <string name="test_current_day">July 18, 2024</string>
+    <string name="test_current_text">Sunny</string>
+    <string name="test_current_temperature">30</string>
+    <string name="test_current_wind_speed">5.4</string>
+    <string name="test_current_humidity">83</string>
+    <string name="temperature">oC</string>
+    <string name="wind_speed">Wind speed</string>
+    <string name="wind_speed_unit">km/h</string>
+    <string name="humidity">Humidity</string>
+    <string name="humidity_unit">%</string>
+    <string name="line">|</string>
+    <string name="forecast_report">Forecast report</string>
+    <string name="percent_cloud">Percent Cloud</string>
+    <string name="speed_unit">m/s</string>
+    <string name="percent">%</string>
+    <string name="city_name_value">City Name</string>
+    <string name="max_temp">Max Temp</string>
+    <string name="min_temp">Min Temp</string>
+    <string name="forecast_detail">Forecast Detail:</string>
+    <string name="back">Back</string>
+    <string name="city_name">%1$s, %2$s</string>
+    <string name="forecast_temperature">Forecast Temperature</string>
+    <string name="_37_do_c">37o C</string>
+    <string name="ngay_thang">Day</string>
+    <string name="trang_thai">Status:</string>
+    <string name="city_name_app_bar" translatable="false">%1$s %2$s</string>
+    <string name="today">Today</string>
+    <string name="weekly_forecast">Weekly Forecast</string>
+    <string name="ha_noi" translatable="false">Hanoi</string>
+    <string name="viet_nam" translatable="false">VietNam</string>
+    <string name="favourite_cities">Favourite Cities</string>
+    <string name="heart_icon" translatable="false">heart icon</string>
+    <string name="choose_language" >Select Language</string>
+    <string name="already_favorite" >City has been added to favorites, cannot be added again</string>
+    <string-array name="languages_vietnamese">
+        <item>Tiếng Việt</item>
+        <item>Tiếng Anh</item>
+    </string-array>
+    <string-array name="languages_english">
+        <item>VietNamese</item>
+        <item>English</item>
+    </string-array>
 </resources>
