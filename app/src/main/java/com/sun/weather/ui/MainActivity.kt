@@ -13,6 +13,7 @@ import com.sun.weather.databinding.ActivityMainBinding
 import com.sun.weather.notification.DailyWorker
 import com.sun.weather.ui.favourite.FavouriteFragment
 import com.sun.weather.ui.home.HomeFragment
+import com.sun.weather.ui.setting.SettingFragment
 import com.sun.weather.utils.Constant
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.Calendar
@@ -50,6 +51,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
             when (it.itemId) {
                 R.id.mi_home -> setNextFragment(HomeFragment.newInstance())
                 R.id.mi_favorite -> setNextFragment(FavouriteFragment.newInstance())
+                R.id.mi_setting -> setNextFragment(SettingFragment.newInstance())
             }
             true
         }
