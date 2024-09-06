@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModel
 import androidx.viewbinding.ViewBinding
+import com.sun.weather.ui.SharedViewModel
 
 typealias ActivityInflate<T> = (LayoutInflater) -> T
 
@@ -14,6 +15,7 @@ abstract class BaseActivity<VB : ViewBinding>(private val inflate: ActivityInfla
 
     val binding get() = _binding!!
     abstract val viewModel: ViewModel
+    abstract val sharedViewModel: SharedViewModel
 
     protected abstract fun initialize()
 

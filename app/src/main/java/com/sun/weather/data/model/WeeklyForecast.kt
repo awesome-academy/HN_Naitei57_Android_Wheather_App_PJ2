@@ -1,42 +1,78 @@
 package com.sun.weather.data.model
+
+import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import com.sun.weather.data.model.entity.WeatherEntity
 import com.sun.weather.utils.ext.combineWithCountry
 
 data class WeeklyForecast(
-    @SerializedName("city") val city: City,
-    @SerializedName("cnt") val cnt: Int,
-    @SerializedName("list") val forecastList: List<WeeklyForecastItem>,
+    @SerializedName("city")
+    @Expose
+    val city: City? = null,
+    @SerializedName("cnt")
+    @Expose
+    val cnt: Int = 0,
+    @SerializedName("list")
+    @Expose
+    val forecastList: List<WeeklyForecastItem>? = null,
 )
 
 data class WeeklyForecastItem(
-    @SerializedName("dt") val dt: Long,
-    @SerializedName("temp") val temp: Temp,
-    @SerializedName("humidity") val humidity: Int,
-    @SerializedName("weather") val weather: List<Weather>,
-    @SerializedName("speed") val speed: Double,
-    @SerializedName("clouds") val clouds: Int,
-    val day: String = "",
-    val iconWeather: String = "",
+    @SerializedName("dt")
+    @Expose
+    val dt: Long = 0,
+    @SerializedName("temp")
+    @Expose
+    val temp: Temp? = null,
+    @SerializedName("humidity")
+    @Expose
+    val humidity: Int = 0,
+    @SerializedName("weather")
+    @Expose
+    val weather: List<Weather>? = null,
+    @SerializedName("speed")
+    @Expose
+    val speed: Double = 0.0,
+    @SerializedName("clouds")
+    @Expose
+    val clouds: Int = 0,
+    val day: String? = "",
+    val iconWeather: String? = "",
 )
 
 data class Temp(
-    @SerializedName("day") val day: Double,
-    @SerializedName("min") val min: Double,
-    @SerializedName("max") val max: Double,
-    @SerializedName("night") val night: Double,
-    @SerializedName("eve") val eve: Double,
-    @SerializedName("morn") val morn: Double,
+    @SerializedName("day")
+    @Expose
+    val day: Double = 0.0,
+    @SerializedName("min")
+    @Expose
+    val min: Double = 0.0,
+    @SerializedName("max")
+    @Expose
+    val max: Double = 0.0,
+    @SerializedName("night")
+    @Expose
+    val night: Double = 0.0,
+    @SerializedName("eve")
+    @Expose
+    val eve: Double = 0.0,
+    @SerializedName("morn")
+    @Expose
+    val morn: Double = 0.0,
 )
 
 fun WeeklyForecast.toWeatherEntity(): WeatherEntity {
+    val cityName = city?.name ?: "Unknown"
+    val cityCountry = city?.country ?: "Unknown"
+    val coord = city?.coord ?: Coord(0.0, 0.0)
+
     return WeatherEntity(
-        id = city.name.combineWithCountry(city.country),
-        latitude = city.coord.lat,
-        longitude = city.coord.lon,
-        city = city.name,
-        country = city.country,
-        weatherDailyList = forecastList.map { it.toWeatherBasic() },
+        id = cityName.combineWithCountry(cityCountry),
+        latitude = coord.lat,
+        longitude = coord.lon,
+        city = cityName,
+        country = cityCountry,
+        weatherDailyList = forecastList?.map { it.toWeatherBasic() } ?: emptyList(),
         weatherHourlyList = null,
         weatherCurrent = null,
     )
@@ -45,10 +81,11 @@ fun WeeklyForecast.toWeatherEntity(): WeatherEntity {
 fun WeeklyForecastItem.toWeatherBasic(): WeatherBasic {
     return WeatherBasic(
         dateTime = dt,
-        currentTemperature = temp.day,
-        maxTemperature = temp.max,
-        minTemperature = temp.min,
-        iconWeather = weather.firstOrNull()?.iconWeather,
+        currentTemperature = temp?.day ?: 0.0,
+        maxTemperature = temp?.max ?: 0.0,
+        minTemperature = temp?.min ?: 0.0,
+        iconWeather = weather?.firstOrNull()?.iconWeather,
+        weatherDescription = weather?.firstOrNull()?.description,
         humidity = humidity,
         percentCloud = clouds,
         windSpeed = speed,

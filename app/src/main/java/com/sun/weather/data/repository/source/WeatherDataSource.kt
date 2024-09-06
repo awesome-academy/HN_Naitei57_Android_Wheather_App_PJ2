@@ -2,22 +2,22 @@ package com.sun.weather.data.repository.source
 
 import com.sun.weather.data.model.CurrentWeather
 import com.sun.weather.data.model.HourlyForecast
-import com.sun.weather.data.model.Weather
 import com.sun.weather.data.model.WeeklyForecast
+import com.sun.weather.data.model.entity.WeatherEntity
 
 interface WeatherDataSource {
     interface Local {
         suspend fun insertCurrentWeather(
-            current: Weather,
-            hourly: Weather,
-            daily: Weather,
+            current: WeatherEntity,
+            hourly: WeatherEntity,
+            daily: WeatherEntity,
         )
 
-        suspend fun insertCurrentWeather(weather: Weather)
+        suspend fun insertCurrentWeather(weather: WeatherEntity)
 
-        suspend fun getAllLocalWeathers(): List<Weather>
+        suspend fun getAllLocalWeathers(): List<WeatherEntity>
 
-        suspend fun getLocalWeather(id: String): Weather?
+        suspend fun getLocalWeather(id: String): WeatherEntity?
 
         suspend fun deleteWeather(id: String)
     }

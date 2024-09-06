@@ -1,5 +1,5 @@
-package com.example.weather.di
 
+package com.sun.weather.di
 import android.app.Application
 import com.google.gson.Gson
 import com.sun.weather.data.repository.source.remote.api.ApiService
@@ -63,6 +63,5 @@ object NetWorkInstant {
     internal const val READ_TIMEOUT = 60L
     internal const val WRITE_TIMEOUT = 30L
     internal const val CONNECT_TIMEOUT = 60L
-
     internal const val CACHE_SIZE = 10 * 1024 * 1024L // 10MB
 }
