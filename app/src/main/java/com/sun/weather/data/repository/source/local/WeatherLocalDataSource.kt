@@ -12,11 +12,11 @@ class WeatherLocalDataSource(
         hourly: Weather,
         daily: Weather,
     ) {
-        // TODO LATER
+        // TODO Implement later
     }
 
     override suspend fun insertCurrentWeather(weather: Weather) {
-        // TODO LATER
+        // TODO Implement later
     }
 
     override suspend fun getAllLocalWeathers(): List<Weather> {
