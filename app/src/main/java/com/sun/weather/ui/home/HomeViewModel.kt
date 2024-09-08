@@ -1,7 +1,6 @@
 package com.sun.weather.ui.home
 
 import android.util.Log
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.weather.utils.livedata.SingleLiveData
@@ -15,18 +14,38 @@ class HomeViewModel(
     private val weatherRepository: WeatherRepository,
 ) : ViewModel() {
     var currentWeather = SingleLiveData<WeatherEntity>()
-    var isLoading = MutableLiveData<Boolean>()
-    var errorMessage = MutableLiveData<String>()
+    var isLoading = SingleLiveData<Boolean>()
+    var errorMessage = SingleLiveData<String>()
 
     fun fetchCurrentWeather(
         latitude: Double,
         longitude: Double,
+        language: String,
     ) {
         isLoading.value = true
         viewModelScope.launch {
             try {
                 val weatherDeferred =
-                    async { weatherRepository.getCurrentLocationWeather(latitude, longitude, "vi") }
+                    async { weatherRepository.getCurrentLocationWeather(latitude, longitude, language) }
+                currentWeather.postValue(weatherDeferred.await().singleOrNull())
+                isLoading.postValue(false)
+            } catch (e: Exception) {
+                Log.v("LCD", "Tai View Model:\n" + e.message.toString())
+                errorMessage.postValue(e.message)
+                isLoading.postValue(false)
+            }
+        }
+    }
+
+    fun fetchWeatherForSearchResult(
+        location: String,
+        language: String,
+    ) {
+        isLoading.value = true
+        viewModelScope.launch {
+            try {
+                val weatherDeferred =
+                    async { weatherRepository.getCurrentWeather(location, language) }
                 currentWeather.postValue(weatherDeferred.await().singleOrNull())
                 isLoading.postValue(false)
             } catch (e: Exception) {

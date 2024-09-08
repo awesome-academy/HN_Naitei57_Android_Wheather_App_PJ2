@@ -1,3 +1,5 @@
+package com.sun.weather.data.repository.source.remote
+
 import com.sun.weather.data.model.CurrentWeather
 import com.sun.weather.data.model.HourlyForecast
 import com.sun.weather.data.model.WeeklyForecast

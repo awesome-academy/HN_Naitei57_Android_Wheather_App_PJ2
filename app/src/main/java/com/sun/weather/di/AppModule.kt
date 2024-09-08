@@ -11,6 +11,7 @@ import com.sun.weather.data.repository.source.local.AppDatabase
 import com.sun.weather.data.repository.source.remote.api.middleware.BooleanAdapter
 import com.sun.weather.data.repository.source.remote.api.middleware.DoubleAdapter
 import com.sun.weather.data.repository.source.remote.api.middleware.IntegerAdapter
+import com.sun.weather.utils.DateTimeUtils
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 
