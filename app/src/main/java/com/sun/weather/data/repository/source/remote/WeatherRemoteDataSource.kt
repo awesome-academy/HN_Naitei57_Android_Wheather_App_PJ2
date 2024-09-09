@@ -7,12 +7,15 @@ import com.sun.weather.data.repository.source.WeatherDataSource
 import com.sun.weather.data.repository.source.remote.api.ApiService
 import com.sun.weather.utils.Constant
 
-class WeatherRemoteDataSource(private val apiService: ApiService) : WeatherDataSource.Remote {
+class WeatherRemoteDataSource(
+    private val baseApiService: ApiService,
+    private val proApiService: ApiService,
+) : WeatherDataSource.Remote {
     override suspend fun getCurrentWeather(
         city: String,
         language: String,
     ): CurrentWeather {
-        return apiService.getCurrentWeather(
+        return baseApiService.getCurrentWeather(
             city,
             Constant.BASE_API_KEY,
             Constant.UNITS_VALUE,
@@ -25,7 +28,7 @@ class WeatherRemoteDataSource(private val apiService: ApiService) : WeatherDataS
         lon: Double,
         language: String,
     ): CurrentWeather {
-        return apiService.getCurrentLocationWeather(
+        return baseApiService.getCurrentLocationWeather(
             lat,
             lon,
             Constant.BASE_API_KEY,
@@ -38,7 +41,7 @@ class WeatherRemoteDataSource(private val apiService: ApiService) : WeatherDataS
         city: String,
         language: String,
     ): HourlyForecast {
-        return apiService.getHourlyForecast(
+        return proApiService.getHourlyForecast(
             city,
             Constant.UNITS_VALUE,
             Constant.FORECAST_HOUR,
@@ -51,7 +54,7 @@ class WeatherRemoteDataSource(private val apiService: ApiService) : WeatherDataS
         city: String,
         language: String,
     ): WeeklyForecast {
-        return apiService.getWeeklyForecast(
+        return proApiService.getWeeklyForecast(
             city,
             Constant.UNITS_VALUE,
             Constant.FORECAST_DAY,

@@ -17,13 +17,11 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
             this,
             Observer { location ->
                 val (latitude, longitude) = location
-                // Chuyển dữ liệu tọa độ sang HomeFragment
-                val homeFragment = HomeFragment.newInstance(latitude, longitude)
+                sharedViewModel.setLocation(latitude, longitude)
+                val homeFragment = HomeFragment.newInstance()
                 setNextFragment(homeFragment)
             },
         )
-
-        // Gọi hàm yêu cầu vị trí người dùng
         viewModel.requestLocationAndFetchWeather(this)
     }
 

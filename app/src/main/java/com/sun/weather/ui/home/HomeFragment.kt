@@ -9,6 +9,7 @@ import com.sun.weather.base.BaseFragment
 import com.sun.weather.data.model.entity.WeatherEntity
 import com.sun.weather.databinding.FragmentHomeBinding
 import com.sun.weather.ui.SharedViewModel
+import com.sun.weather.ui.detail.DetailFragment
 import com.sun.weather.ui.search.SearchFragment
 import com.sun.weather.utils.ext.replaceFragment
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
@@ -27,12 +28,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        sharedViewModel.latitude.observe(this) { lat ->
-            lat?.let { latitude = it }
-        }
-        sharedViewModel.longitude.observe(this) { lon ->
-            lon?.let { longitude = it }
-        }
+        sharedViewModel.latitude.value?.let { latitude = it }
+        sharedViewModel.longitude.value?.let { longitude = it }
         fetchWeatherData()
     }
 
@@ -48,6 +45,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                 location?.let {
                     fetchWeatherForLocation(it, "vi")
                 }
+            }
+        }
+        binding.constraintLayout.setOnClickListener {
+            cityName?.let {
+                replaceFragment(R.id.fragment_container, DetailFragment.newInstance(it), true)
+            } ?: run {
+                Toast.makeText(context, "City name is not available", Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -70,7 +74,17 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     }
 
     override fun bindData() {
-        // Todo implement later
+        sharedViewModel.latitude.observe(this) { lat ->
+            lat?.let { latitude = it }
+        }
+        sharedViewModel.longitude.observe(this) { lon ->
+            lon?.let { longitude = it }
+        }
+        sharedViewModel.selectedLocation.observe(viewLifecycleOwner) { location ->
+            location?.let {
+                fetchWeatherForLocation(it, "vi")
+            }
+        }
     }
 
     private fun fetchWeatherData() {

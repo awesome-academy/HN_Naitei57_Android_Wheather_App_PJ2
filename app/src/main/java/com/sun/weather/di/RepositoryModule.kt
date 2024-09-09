@@ -5,6 +5,9 @@ import com.sun.weather.data.repository.WeatherRepositoryImpl
 import com.sun.weather.data.repository.source.WeatherDataSource
 import com.sun.weather.data.repository.source.local.WeatherLocalDataSource
 import com.sun.weather.data.repository.source.remote.WeatherRemoteDataSource
+import com.sun.weather.utils.Constant.BASE_API_SERVICE
+import com.sun.weather.utils.Constant.PRO_API_SERVICE
+import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
 val RepositoryModule =
@@ -12,7 +15,10 @@ val RepositoryModule =
         single {
             provideWeatherRepository(
                 WeatherLocalDataSource(get()),
-                WeatherRemoteDataSource(get()),
+                WeatherRemoteDataSource(
+                    baseApiService = get(named(BASE_API_SERVICE)),
+                    proApiService = get(named(PRO_API_SERVICE)),
+                ),
             )
         }
     }

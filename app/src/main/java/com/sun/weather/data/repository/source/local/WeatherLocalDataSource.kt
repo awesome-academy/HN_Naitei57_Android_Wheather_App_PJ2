@@ -1,5 +1,6 @@
 package com.sun.weather.data.repository.source.local
 
+import com.sun.weather.data.model.entity.WeatherEntity
 import com.sun.weather.data.repository.source.WeatherDataSource
 import com.sun.weather.data.repository.source.local.dao.WeatherDao
 
@@ -7,22 +8,20 @@ class WeatherLocalDataSource(
     private val weatherDao: WeatherDao,
 ) : WeatherDataSource.Local {
     override suspend fun insertCurrentWeather(
-        current: Weather,
-        hourly: Weather,
-        daily: Weather,
+        current: WeatherEntity,
+        hourly: WeatherEntity,
+        daily: WeatherEntity,
     ) {
-        // TODO Implement later
     }
 
-    override suspend fun insertCurrentWeather(weather: Weather) {
-        // TODO Implement later
+    override suspend fun insertCurrentWeather(weather: WeatherEntity) {
     }
 
-    override suspend fun getAllLocalWeathers(): List<Weather> {
+    override suspend fun getAllLocalWeathers(): List<WeatherEntity> {
         return weatherDao.getAllData()
     }
 
-    override suspend fun getLocalWeather(id: String): Weather? {
+    override suspend fun getLocalWeather(id: String): WeatherEntity? {
         return weatherDao.getWeather(id)
     }
 

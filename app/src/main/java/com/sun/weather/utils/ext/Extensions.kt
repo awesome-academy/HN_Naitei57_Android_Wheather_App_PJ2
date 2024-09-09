@@ -23,7 +23,6 @@ fun Int.unixTimestampToDateTimeString(): String {
     } catch (e: IllegalArgumentException) {
         Log.e("Extensions", "Exception occurred", e)
     }
-
     return this.toString()
 }
 
@@ -37,7 +36,6 @@ fun Int.unixTimestampToDateYearString(): String {
     } catch (e: IllegalArgumentException) {
         Log.e("Extensions", "Exception occurred", e)
     }
-
     return this.toString()
 }
 
@@ -51,7 +49,6 @@ fun Int.unixTimestampToDateMonthString(): String {
     } catch (e: IllegalArgumentException) {
         Log.e("Extensions", "Exception occurred", e)
     }
-
     return this.toString()
 }
 
@@ -65,7 +62,6 @@ fun Int.unixTimestampToDateString(): String {
     } catch (e: IllegalArgumentException) {
         Log.e("Extensions", "Exception occurred", e)
     }
-
     return this.toString()
 }
 
@@ -79,7 +75,6 @@ fun Int.unixTimestampToHourString(): String {
     } catch (e: IllegalArgumentException) {
         Log.e("Extensions", "Exception occurred", e)
     }
-
     return this.toString()
 }
 
@@ -93,7 +88,6 @@ fun Int.unixTimestampToTimeString(): String {
     } catch (e: IllegalArgumentException) {
         Log.e("Extensions", "Exception occurred", e)
     }
-
     return this.toString()
 }
 

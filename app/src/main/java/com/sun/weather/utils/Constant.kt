@@ -21,6 +21,10 @@ object Constant {
     const val LANGUAGE_PARAM = "lang"
     const val FORECAST_DAY = 7
     const val FORECAST_HOUR = 24
+    const val BASE_API_SERVICE = "baseApiService"
+    const val PRO_API_SERVICE = "proApiService"
+    const val BASE_RETROFIT = "baseRetrofit"
+    const val PRO_RETROFIT = "proRetrofit"
     const val LANGUAGE_CODE_VIETNAMESE = "vi"
     const val LANGUAGE_CODE_ENGLISH = "en"
 }
