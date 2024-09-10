@@ -1,6 +1,7 @@
 package com.sun.weather.data.repository.source
 
 import com.sun.weather.data.model.CurrentWeather
+import com.sun.weather.data.model.FavouriteLocation
 import com.sun.weather.data.model.HourlyForecast
 import com.sun.weather.data.model.WeeklyForecast
 import com.sun.weather.data.model.entity.WeatherEntity
@@ -20,6 +21,14 @@ interface WeatherDataSource {
         suspend fun getLocalWeather(id: String): WeatherEntity?
 
         suspend fun deleteWeather(id: String)
+
+        suspend fun insertFavourite(favourite: FavouriteLocation)
+
+        suspend fun getAllFavourite(): List<FavouriteLocation>
+
+        suspend fun removeFavouriteItem(favouriteId: Long)
+
+        suspend fun isFavoriteLocationExists(cityName: String): Int
     }
 
     interface Remote {

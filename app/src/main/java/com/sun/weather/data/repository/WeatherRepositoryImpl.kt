@@ -1,5 +1,5 @@
 package com.sun.weather.data.repository
-
+import com.sun.weather.data.model.FavouriteLocation
 import com.sun.weather.data.model.entity.WeatherEntity
 import com.sun.weather.data.model.toWeatherEntity
 import com.sun.weather.data.repository.source.WeatherDataSource
@@ -11,6 +11,22 @@ class WeatherRepositoryImpl(
     private val localDataSource: WeatherDataSource.Local,
     private val remoteDataSource: WeatherDataSource.Remote,
 ) : KoinComponent, WeatherRepository {
+    override suspend fun isFavoriteLocationExists(cityName: String): Int {
+        return localDataSource.isFavoriteLocationExists(cityName)
+    }
+
+    override suspend fun insertFavoriteWeather(favouriteLocation: FavouriteLocation) {
+        localDataSource.insertFavourite(favouriteLocation)
+    }
+
+    override suspend fun getAllFavorite(): List<FavouriteLocation> {
+        return localDataSource.getAllFavourite()
+    }
+
+    override suspend fun removeFavoriteItem(id: Long) {
+        localDataSource.removeFavouriteItem(id)
+    }
+
     override fun getCurrentWeather(
         city: String,
         language: String,

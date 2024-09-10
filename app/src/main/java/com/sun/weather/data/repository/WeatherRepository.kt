@@ -1,31 +1,16 @@
 package com.sun.weather.data.repository
-
 import com.sun.weather.data.model.FavouriteLocation
-import com.sun.weather.data.model.Weather
 import com.sun.weather.data.model.entity.WeatherEntity
 import kotlinx.coroutines.flow.Flow
 
 interface WeatherRepository {
-    fun getSelectedLocation(key: String): String
+    suspend fun insertFavoriteWeather(favouriteLocation: FavouriteLocation)
 
-    fun isFavoriteLocationExists(
-        cityName: String,
-        countryName: String,
-    ): Boolean
+    suspend fun getAllFavorite(): List<FavouriteLocation>
 
-    fun saveCurrentWeather(currentWeather: WeatherEntity)
+    suspend fun removeFavoriteItem(id: Long)
 
-    fun saveWeeklyForecastLocal(weeklyForecast: WeatherEntity)
-
-    fun getLocalWeather(id: String): Weather?
-
-    fun saveHourlyForecastLocal(hourlyForecast: WeatherEntity)
-
-    fun insertFavoriteWeather(favouriteLocation: FavouriteLocation)
-
-    fun getAllFavorite(): List<FavouriteLocation>
-
-    fun removeFavoriteItem(id: Long)
+    suspend fun isFavoriteLocationExists(cityName: String): Int
 
     fun getCurrentWeather(
         city: String,

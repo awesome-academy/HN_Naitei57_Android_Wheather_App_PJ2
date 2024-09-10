@@ -40,7 +40,8 @@
     <string name="favourite_cities">Favourite Cities</string>
     <string name="heart_icon" translatable="false">heart icon</string>
     <string name="choose_language" >Select Language</string>
-    <string name="already_favorite" >City has been added to favorites, cannot be added again</string>
+    <string name="already_favorite" >City  %1$s has been added to favorites, cannot be added again</string>
+    <string name="add_favorite_success" >City %1$s added to favorites successfully!</string>
     <string-array name="languages_vietnamese">
         <item>Tiếng Việt</item>
         <item>Tiếng Anh</item>

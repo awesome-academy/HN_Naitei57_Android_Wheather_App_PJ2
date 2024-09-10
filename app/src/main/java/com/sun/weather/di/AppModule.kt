@@ -22,6 +22,7 @@ val AppModule =
         single { provideBaseDispatcherProvider() }
         single { provideAppDatabase(androidContext()) }
         factory { get<AppDatabase>().weatherDao() }
+        factory { get<AppDatabase>().favouriteDao() }
         single { provideGson() }
     }
 
