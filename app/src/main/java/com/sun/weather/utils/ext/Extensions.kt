@@ -17,6 +17,7 @@ fun Int.unixTimestampToDateTimeString(): String {
     try {
         val calendar = Calendar.getInstance()
         calendar.timeInMillis = this * 1000.toLong()
+
         val outputDateFormat = SimpleDateFormat("dd MMM - hh:mm a", Locale.ENGLISH)
         outputDateFormat.timeZone = TimeZone.getDefault() // user's default time zone
         return outputDateFormat.format(calendar.time)

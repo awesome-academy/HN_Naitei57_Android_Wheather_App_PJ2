@@ -39,7 +39,8 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(FragmentDetailBinding
 
         hourlyAdapter = HourlyAdapter(mutableListOf())
         binding.recyclerViewHourly.apply {
-            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
             adapter = hourlyAdapter
         }
 
@@ -48,7 +49,8 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(FragmentDetailBinding
             layoutManager = LinearLayoutManager(requireContext())
             adapter = dailyAdapter
         }
-        binding.tvToolbarTitle.text = getString(R.string.city_name_app_bar, getString(R.string.forecast_detail), cityName)
+        binding.tvToolbarTitle.text =
+            getString(R.string.city_name_app_bar, getString(R.string.forecast_detail), cityName)
         val currentDate = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(Date())
         binding.tvCurrentTime.text = currentDate
     }

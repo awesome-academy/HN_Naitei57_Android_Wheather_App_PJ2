@@ -43,7 +43,7 @@ class FavouriteFragment() : BaseFragment<FragmentFavouriteBinding>(FragmentFavou
         }
 
         viewModel.error.observe(viewLifecycleOwner) { errorMessage ->
-            Log.v("FavouriteFragment", "Error: $errorMessage")
+            Log.v(MY_TAG, "Error: $errorMessage")
         }
     }
 
