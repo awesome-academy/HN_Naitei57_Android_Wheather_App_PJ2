@@ -13,11 +13,11 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.work.Worker
 import androidx.work.WorkerParameters
-import com.example.weather.utils.ext.unixTimestampToDateTimeString
 import com.google.android.gms.location.LocationServices
 import com.sun.weather.R
 import com.sun.weather.data.repository.WeatherRepository
 import com.sun.weather.ui.MainActivity
+import com.sun.weather.utils.ext.unixTimestampToDateTimeString
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async

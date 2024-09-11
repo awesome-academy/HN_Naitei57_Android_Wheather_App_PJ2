@@ -9,6 +9,8 @@ import com.sun.weather.R
 import com.sun.weather.base.BaseFragment
 import com.sun.weather.databinding.FragmentDetailBinding
 import com.sun.weather.ui.SharedViewModel
+import com.sun.weather.ui.setting.SettingFragment.Companion.KEY_LANGUAGE_CODE
+import com.sun.weather.utils.SharedPrefManager
 import com.sun.weather.utils.ext.goBackFragment
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -22,6 +24,7 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(FragmentDetailBinding
     private lateinit var hourlyAdapter: HourlyAdapter
     private var isNetworkAvailable: Boolean = true
     private var cityName: String? = null
+    val language: String = SharedPrefManager.getString(KEY_LANGUAGE_CODE, "vi").toString()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,7 +39,6 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(FragmentDetailBinding
         binding.toolbar.findViewById<ImageButton>(R.id.btn_back).setOnClickListener {
             goBackFragment()
         }
-
         hourlyAdapter = HourlyAdapter(mutableListOf())
         binding.recyclerViewHourly.apply {
             layoutManager =
@@ -58,8 +60,8 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(FragmentDetailBinding
     override fun initData() {
         cityName?.let { name ->
             Log.v(MY_TAG, "initData: cityName: $name, isNetworkAvailable: $isNetworkAvailable")
-            viewModel.loadWeeklyForecast(name, isNetworkAvailable, "vi")
-            viewModel.loadHourlyForecast(name, isNetworkAvailable, "vi")
+            viewModel.loadWeeklyForecast(name, isNetworkAvailable, language)
+            viewModel.loadHourlyForecast(name, isNetworkAvailable, language)
         }
     }
 

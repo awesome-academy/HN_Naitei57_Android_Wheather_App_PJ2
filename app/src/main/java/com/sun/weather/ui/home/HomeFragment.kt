@@ -1,7 +1,6 @@
 package com.sun.weather.ui.home
 
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.sun.weather.R
@@ -11,6 +10,8 @@ import com.sun.weather.databinding.FragmentHomeBinding
 import com.sun.weather.ui.SharedViewModel
 import com.sun.weather.ui.detail.DetailFragment
 import com.sun.weather.ui.search.SearchFragment
+import com.sun.weather.ui.setting.SettingFragment.Companion.KEY_LANGUAGE_CODE
+import com.sun.weather.utils.SharedPrefManager
 import com.sun.weather.utils.ext.replaceFragment
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -25,6 +26,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     private var cityName: String? = null
     private var latitude: Double = 0.0
     private var longitude: Double = 0.0
+    val language: String = SharedPrefManager.getString(KEY_LANGUAGE_CODE, "vi").toString()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,13 +45,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         binding.icArrowDown.setOnClickListener {
             sharedViewModel.selectedLocation.observe(viewLifecycleOwner) { location ->
                 location?.let {
-                    fetchWeatherForLocation(it, "vi")
+                    fetchWeatherForLocation(it, language)
                 }
             }
         }
         binding.constraintLayout.setOnClickListener {
             cityName?.let {
-                replaceFragment(R.id.fragment_container, DetailFragment.newInstance(cityName), true)
+                replaceFragment(R.id.fragment_container, DetailFragment.newInstance(it), true)
             }
         }
         binding.btnAddFavourite.setOnClickListener {
@@ -83,24 +85,23 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         }
         sharedViewModel.selectedLocation.observe(viewLifecycleOwner) { location ->
             location?.let {
-                fetchWeatherForLocation(it, "vi")
+                fetchWeatherForLocation(it, language)
             }
         }
     }
 
     private fun fetchWeatherData() {
-        viewModel.fetchCurrentWeather(latitude, longitude, "vi")
+        viewModel.fetchCurrentWeather(latitude, longitude, language)
     }
 
     private fun fetchWeatherForLocation(
         location: String,
         language: String,
     ) {
-        viewModel.fetchWeatherForSearchResult(location, "vi")
+        viewModel.fetchWeatherForSearchResult(location, language)
     }
 
     private fun updateUIWithCurrentWeather(currentWeather: WeatherEntity) {
-        Log.v("LCD", currentWeather.toString())
         binding.tvLocation.text = getString(R.string.city_name, currentWeather.city, currentWeather.country)
         cityName = currentWeather.city
         binding.tvCurrentDay.text = getString(R.string.today) + formatDate(currentWeather.timeZone!!)

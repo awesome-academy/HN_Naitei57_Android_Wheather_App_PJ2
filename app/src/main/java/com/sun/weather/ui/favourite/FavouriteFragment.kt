@@ -8,6 +8,7 @@ import com.sun.weather.R
 import com.sun.weather.base.BaseFragment
 import com.sun.weather.databinding.FragmentFavouriteBinding
 import com.sun.weather.ui.SharedViewModel
+import com.sun.weather.ui.detail.DetailFragment.Companion.MY_TAG
 import com.sun.weather.utils.ext.goBackFragment
 import com.sun.weather.utils.listener.OnItemClickListener
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
@@ -47,14 +48,16 @@ class FavouriteFragment() : BaseFragment<FragmentFavouriteBinding>(FragmentFavou
         }
     }
 
+    companion object {
+        fun newInstance() = FavouriteFragment()
+    }
+
     override fun onItemClickListener(
         view: View,
         position: Int,
+        action: String,
     ) {
         val favouriteLocation = viewModel.favouriteLocations.value?.get(position)
         favouriteLocation?.id?.let { viewModel.removeFavouriteItem(it) }
-    }
-    companion object {
-        fun newInstance() = FavouriteFragment()
     }
 }
