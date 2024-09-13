@@ -35,7 +35,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
         )
         viewModel.requestLocationAndFetchWeather(this)
         setNavigation()
-        scheduleDailyWorkAtSpecificTime(23, 46)
+        scheduleDailyWorkAtSpecificTime(0, 28)
     }
 
     private fun setNextFragment(fragment: Fragment) {
